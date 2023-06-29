@@ -6,7 +6,7 @@
 /*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 07:35:24 by osterger          #+#    #+#             */
-/*   Updated: 2023/06/29 14:42:57 by lboulatr         ###   ########.fr       */
+/*   Updated: 2023/06/29 14:45:01 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,6 @@
 # define FAILURE    EXIT_FAILURE
 # define TRUE		EXIT_SUCCESS
 # define FALSE		EXIT_FAILURE
-# define CHECK 		0
-# define ONE_DEAD	1
-# define ALL_EAT 	2
 
 typedef struct s_rules
 {
