@@ -6,7 +6,7 @@
 /*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 03:26:21 by osterger          #+#    #+#             */
-/*   Updated: 2023/06/29 08:06:50 by lboulatr         ###   ########.fr       */
+/*   Updated: 2023/06/29 08:23:32 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	*ph_thread(void *arg_philo)
 
 	philo = (t_philo *)arg_philo;
 	if (philo->id % 2 == 0)
-		ft_sleep(philo->rules->tt_sleep);
+		ft_sleep(philo->rules->tt_sleep / 10);
 	while (check_death_status(philo) != FAILURE)
 	{
 		ph_actions(philo);
