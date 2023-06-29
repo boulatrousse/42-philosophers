@@ -6,7 +6,7 @@
 /*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 07:35:24 by osterger          #+#    #+#             */
-/*   Updated: 2023/06/29 08:25:59 by lboulatr         ###   ########.fr       */
+/*   Updated: 2023/06/29 14:09:30 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct s_philo
 {
 	int					id;
 	int					count_eat;
-	int					end;
+	int					is_alive;
 
 	long long			start;
 	long long			last_meal;

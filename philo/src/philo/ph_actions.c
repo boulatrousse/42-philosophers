@@ -6,7 +6,7 @@
 /*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 10:25:04 by lboulatr          #+#    #+#             */
-/*   Updated: 2023/06/29 13:16:42 by lboulatr         ###   ########.fr       */
+/*   Updated: 2023/06/29 14:23:59 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,13 @@ static int	taking_forks(t_philo *philo)
 	{
 		if (philo->right_fork != NULL)
 			pthread_mutex_lock(philo->right_fork);
+		pthread_mutex_lock(&philo->left_fork);
 	}
 	else
+	{
 		pthread_mutex_lock(&philo->left_fork);
+		pthread_mutex_lock(philo->right_fork);
+	}
 	pthread_mutex_lock(&philo->rules->printing);
 	ph_printing("has taken a fork.\n", philo);
 	pthread_mutex_unlock(&philo->rules->printing);
@@ -43,10 +47,6 @@ static int	taking_forks(t_philo *philo)
 		ft_sleep(philo->rules->tt_die * 2);
 		return (FAILURE);
 	}
-	if (philo->id == philo->rules->n_philo)
-		pthread_mutex_lock(&philo->left_fork);
-	else
-		pthread_mutex_lock(philo->right_fork);
 	pthread_mutex_lock(&philo->rules->printing);
 	ph_printing("has taken a fork.\n", philo);
 	pthread_mutex_unlock(&philo->rules->printing);
@@ -62,8 +62,16 @@ static void	eating(t_philo *philo)
 	philo->last_meal = ph_get_actual_time();
 	pthread_mutex_unlock(&philo->rules->check_meal);
 	ft_sleep(philo->rules->tt_eat);
-	pthread_mutex_unlock(&philo->left_fork);
-	pthread_mutex_unlock(philo->right_fork);
+	if (philo->id == philo->rules->n_philo)
+	{
+		pthread_mutex_unlock(philo->right_fork);
+		pthread_mutex_unlock(&philo->left_fork);
+	}
+	else
+	{
+		pthread_mutex_unlock(&philo->left_fork);
+		pthread_mutex_unlock(philo->right_fork);
+	}
 }
 
 static void	sleeping(t_philo *philo)

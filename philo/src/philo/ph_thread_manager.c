@@ -6,7 +6,7 @@
 /*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 03:26:21 by osterger          #+#    #+#             */
-/*   Updated: 2023/06/29 08:23:32 by lboulatr         ###   ########.fr       */
+/*   Updated: 2023/06/29 13:56:30 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,7 @@ int	ph_thread_manager(t_ph *ph)
 		if (pthread_create(&ph->philo[i].thread, NULL, \
 					ph_thread, &ph->philo[i]) != 0)
 			return (FAILURE);
-		{
-			pthread_mutex_lock(&ph->rules.check_meal);
-			ph->philo[i].last_meal = ph_get_actual_time();
-			pthread_mutex_unlock(&ph->rules.check_meal);
-		}
+		usleep(50);
 		i++;
 	}
 	ph_check_death(ph, 0);
@@ -45,7 +41,7 @@ static void	*ph_thread(void *arg_philo)
 
 	philo = (t_philo *)arg_philo;
 	if (philo->id % 2 == 0)
-		ft_sleep(philo->rules->tt_sleep / 10);
+		ft_sleep(philo->rules->tt_eat);
 	while (check_death_status(philo) != FAILURE)
 	{
 		ph_actions(philo);

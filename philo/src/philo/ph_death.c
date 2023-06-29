@@ -6,7 +6,7 @@
 /*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 10:51:39 by lboulatr          #+#    #+#             */
-/*   Updated: 2023/06/29 08:10:12 by lboulatr         ###   ########.fr       */
+/*   Updated: 2023/06/29 14:33:12 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	ph_check_death(t_ph *ph, int i)
 		while (++i < ph->rules.n_philo && (ph->rules.one_dead == FALSE))
 		{
 			pthread_mutex_lock(&(ph->rules.check_meal));
-			if (!ph->philo[i].end && (ph_get_actual_time() - \
-				ph->philo[i].last_meal >= (ph->philo[i].rules->tt_die)))
+			if ((ph_get_actual_time() - \
+			ph->philo[i].last_meal >= (ph->philo[i].rules->tt_die)))
 				dead(ph, i);
 			pthread_mutex_unlock(&(ph->rules.check_meal));
 		}
@@ -42,6 +42,8 @@ void	ph_check_death(t_ph *ph, int i)
 			break ;
 		}
 	}
+	//kill all
+	// enlever one dead
 }
 
 static void	dead(t_ph *ph, int i)

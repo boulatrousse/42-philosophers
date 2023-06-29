@@ -6,7 +6,7 @@
 /*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 09:02:01 by osterger          #+#    #+#             */
-/*   Updated: 2023/06/27 15:12:14 by lboulatr         ###   ########.fr       */
+/*   Updated: 2023/06/29 14:09:44 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ int	ph_create_philos(t_ph *ph)
 	{
 		ph->philo[i].id = i + 1;
 		ph->philo[i].count_eat = 0;
-		ph->philo[i].end = 0;
+		ph->philo[i].is_alive = TRUE;
 		ph->philo[i].start = ph->rules.start;
+		ph->philo[i].last_meal = ph->rules.start;
 		ph->philo[i].right_fork = NULL;
 		if (pthread_mutex_init(&ph->philo[i].left_fork, NULL) != 0)
 			return (FAILURE);
