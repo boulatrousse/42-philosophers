@@ -6,7 +6,7 @@
 /*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 10:25:04 by lboulatr          #+#    #+#             */
-/*   Updated: 2023/06/29 08:26:47 by lboulatr         ###   ########.fr       */
+/*   Updated: 2023/06/29 13:16:42 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ static int	taking_forks(t_philo *philo)
 	pthread_mutex_lock(&philo->rules->printing);
 	ph_printing("has taken a fork.\n", philo);
 	pthread_mutex_unlock(&philo->rules->printing);
-	pthread_mutex_unlock(&philo->left_fork);
-	pthread_mutex_unlock(philo->right_fork);
 	return (SUCCESS);
 }
 
@@ -64,6 +62,8 @@ static void	eating(t_philo *philo)
 	philo->last_meal = ph_get_actual_time();
 	pthread_mutex_unlock(&philo->rules->check_meal);
 	ft_sleep(philo->rules->tt_eat);
+	pthread_mutex_unlock(&philo->left_fork);
+	pthread_mutex_unlock(philo->right_fork);
 }
 
 static void	sleeping(t_philo *philo)
