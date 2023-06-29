@@ -6,7 +6,7 @@
 /*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 09:02:01 by osterger          #+#    #+#             */
-/*   Updated: 2023/06/29 14:09:44 by lboulatr         ###   ########.fr       */
+/*   Updated: 2023/06/29 14:42:39 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,8 @@
 
 static int	init_mutex(t_ph *ph);
 
-int	ph_create_philos(t_ph *ph)
+int	ph_create_philos(t_ph *ph, int i)
 {
-	int	i;
-
-	i = 0;
 	init_mutex(ph);
 	ph->philo = malloc(sizeof(t_philo) * ph->rules.n_philo);
 	if (!ph->philo)

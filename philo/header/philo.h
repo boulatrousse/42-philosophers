@@ -6,7 +6,7 @@
 /*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 07:35:24 by osterger          #+#    #+#             */
-/*   Updated: 2023/06/29 14:09:30 by lboulatr         ###   ########.fr       */
+/*   Updated: 2023/06/29 14:42:57 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ long long		ph_get_actual_time(void);
 //---------------------- PHILO ---------------------------------
 
 int				ph_init(int argc, char **argv, t_ph *ph);
-int				ph_create_philos(t_ph *ph);
+int				ph_create_philos(t_ph *ph, int i);
 int				ph_thread_manager(t_ph *ph);
 void			ph_actions(t_philo *philo);
 void			ph_printing(char *msg, t_philo *philo);
