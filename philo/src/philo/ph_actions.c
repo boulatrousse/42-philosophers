@@ -6,7 +6,7 @@
 /*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 10:25:04 by lboulatr          #+#    #+#             */
-/*   Updated: 2023/06/29 14:23:59 by lboulatr         ###   ########.fr       */
+/*   Updated: 2023/07/11 09:47:37 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ static void	sleeping(t_philo *philo)
 
 static void	thinking(t_philo *philo)
 {
+	if (philo->rules->n_philo % 2 == 1)
+		ft_sleep(philo->rules->tt_eat / 2);
 	pthread_mutex_lock(&philo->rules->printing);
 	ph_printing("is thinking.\n", philo);
 	pthread_mutex_unlock(&philo->rules->printing);
